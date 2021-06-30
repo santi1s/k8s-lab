@@ -181,16 +181,7 @@ Reference files are under: `infra/k8s-lab/`
 | common.tfvars| User defined values for the variables.red[*] |
 
 We will also run a few commands after the VM is up and running as defined on the file
-`tools/addons.sh`.
-
-```bash
-#!/bin/bash
-
-apt-get update \
-    && DEBIAN_FRONTEND=noninteractive apt-get install -y lynx
-
-apt-get install cowsay && cowsay "Howdy Azure Bootcamp!" > /tmp/cowsay.txt
-```
+`tools/kvm_setup.sh`.
 
 * You will be editing this file.
 
