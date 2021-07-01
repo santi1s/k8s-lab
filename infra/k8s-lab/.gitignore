@@ -1,3 +1,4 @@
 terraform*
 .terraform*
 k8s-lab-infra
+main.tf.*
