@@ -31,7 +31,7 @@ resource "azurerm_subnet" "mgmt-subnet" {
   name                 = "${azurerm_resource_group.rg.name}-mgmt-subnet"
   virtual_network_name = "${azurerm_virtual_network.vnet.name}"
   resource_group_name  = "${azurerm_resource_group.rg.name}"
-  address_prefix       = "${var.mgmt-subnet_prefix}"
+  address_prefixes     = ["${var.mgmt-subnet_prefix}"]
 }
 
 
@@ -94,7 +94,7 @@ resource "azurerm_managed_disk" "datadisk" {
   resource_group_name  = "${azurerm_resource_group.rg.name}"
   storage_account_type = "Standard_LRS"
   create_option        = "Empty"
-  disk_size_gb         = "1023"
+  disk_size_gb         = "128"
 }
 
 # ***************************** VIRTUAL MACHINE **************************** #
@@ -104,6 +104,11 @@ resource "azurerm_virtual_machine" "vm" {
   resource_group_name   = "${azurerm_resource_group.rg.name}"
   vm_size               = "${var.vm_size}"
   network_interface_ids = ["${azurerm_network_interface.nic.id}"]
+
+
+  delete_os_disk_on_termination = true
+
+  delete_data_disks_on_termination = true
 
   storage_image_reference {
     publisher = "${var.image_publisher}"
@@ -123,7 +128,7 @@ resource "azurerm_virtual_machine" "vm" {
     name              = "${var.hostname}-datadisk"
     managed_disk_id   = "${azurerm_managed_disk.datadisk.id}"
     managed_disk_type = "Standard_LRS"
-    disk_size_gb      = "1023"
+    disk_size_gb      = "128"
     create_option     = "Attach"
     lun               = 0
   }
@@ -146,8 +151,8 @@ resource "azurerm_virtual_machine" "vm" {
     storage_uri = "${azurerm_storage_account.stor.primary_blob_endpoint}"
   }
 }
-
-resource "azurerm_virtual_machine_extension" "fetch" {
+/*
+resource "azurerm_virtual_machine_extension" "CSE-k8s" {
   name                 = "CustomScriptExtension"
   virtual_machine_id   = "${azurerm_virtual_machine.vm.id}"
   publisher            = "Microsoft.Azure.Extensions"
@@ -164,3 +169,4 @@ resource "azurerm_virtual_machine_extension" "fetch" {
     }
 SETTINGS
 }
+*/
