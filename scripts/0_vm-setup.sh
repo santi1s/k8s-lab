@@ -23,7 +23,7 @@ bash_scripts=("./kvm/0_kvm-setup.sh" "./docker/1_docker-setup.sh")
 for script in ${bash_scripts[@]}; do
 {
     { # try
-        ( test -f $script ) && bash "$script"
+        ( test -f $script ) && bash "$script" > /tmp/$script.log 2>&1
     } || { # catch
         echo -e "$script not found or error in $script execution"
         exit 1
