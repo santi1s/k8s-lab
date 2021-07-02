@@ -17,13 +17,13 @@ fi
 
 # Scripts to execute
 
-bash_scripts=("./kvm/0_kvm-setup.sh" "./docker/1_docker-setup.sh")
+bash_scripts=("./1_kvm-setup.sh" "./2_docker-setup.sh")
 
 #iterate scripts array and execute them
 for script in ${bash_scripts[@]}; do
 {
     { # try
-        ( test -f $script ) && bash "$script" > /tmp/$script.log 2>&1
+        ( test -f $script ) && bash "$script" > /var/log/azure/Microsoft.Azure.Extensions.CustomScript/$script.log 2>&1
     } || { # catch
         echo -e "$script not found or error in $script execution"
         exit 1
