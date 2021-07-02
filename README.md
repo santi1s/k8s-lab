@@ -163,7 +163,7 @@ Execute the `setup_terraform.sh` script:
   ----------------------------------------------------------
   Setup is done. Your Terraform variables were saved on the terraform.rc file.
   ```
-]
+
 
 
 ### K8s-lab Terraform Setup
