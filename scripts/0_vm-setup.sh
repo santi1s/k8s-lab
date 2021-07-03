@@ -23,7 +23,7 @@ bash_scripts=("./1_kvm-setup.sh" "./2_docker-setup.sh")
 for script in ${bash_scripts[@]}; do
 {
     { # try
-        ( test -f $script ) && bash "$script" > /var/log/azure/Microsoft.Azure.Extensions.CustomScript/$script.log 2>&1
+        ( test -f $script ) && bash "$script"
     } || { # catch
         echo -e "$script not found or error in $script execution"
         exit 1

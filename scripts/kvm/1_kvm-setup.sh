@@ -8,6 +8,7 @@
     if test -n "${disk-}"; then
         parted --script /dev/$disk mklabel msdos mkpart primary ext4 1MiB 100%
         partprobe
+        sleep 1
         # format primary partition with ext4	
         mkfs.ext4 /dev/${disk}1
     else
