@@ -17,7 +17,7 @@ fi
 
 # Scripts to execute
 
-bash_scripts=("./1_kvm-setup.sh" "./2_docker-setup.sh")
+bash_scripts=("./1_kvm-setup.sh" "./2_docker-setup.sh" "./3_k8s-nodes-setup.sh")
 
 #iterate scripts array and execute them
 for script in ${bash_scripts[@]}; do
