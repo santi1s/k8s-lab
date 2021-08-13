@@ -6,14 +6,14 @@
 { # try
     disk=$(lsblk | grep -m1 128G | awk '{print $1}')
     if test -n "${disk-}"; then
-        #part=$(lsblk | grep -m1 "${disk}1" | awk '{print $1}')
-        #if ! test -n "${part}";then
+        part=$(lsblk | grep -m1 "${disk}1" | awk '{print $1}')
+        if ! test -n "${part}";then
             parted --script /dev/$disk mklabel msdos mkpart primary ext4 1MiB 100%
             partprobe
             sleep 1
             # format primary partition with ext4	
-            mkfs.ext4 /dev/${disk}1 -e continue
-       # fi
+            mkfs.ext4 /dev/${disk}1
+        fi
     else
         echo -e  "disk is not set or empty"
         exit 1
