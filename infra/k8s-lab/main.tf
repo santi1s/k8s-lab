@@ -1,9 +1,9 @@
 provider "azurerm" {
   features {}
-  subscription_id = "ef2f2ca5-1657-47ae-b4c2-b078566444a7"
-  client_id       = "01c4547b-1d81-484d-b582-7b75db46dc7b"
-  client_secret   = "uEOpY~WYN.Llv34uN7e.8nk.fHMxbX-Zqv"
-  tenant_id       = "d99c8c6d-85b1-409f-bead-dfa92d8b0aea"
+  subscription_id = "<SUBSCRIPTION_ID>"
+  client_id       = "<SP_CLIENT_APP_ID"
+  client_secret   = "<SP_SECRET>"
+  tenant_id       = "<TENANT_ID>"
 }
 
 
@@ -13,7 +13,7 @@ resource "random_integer" "random_int" {
     max = 999
 }
 
-# ************************** RG **************************** #
+# ************************** Terraform Bootcamp **************************** #
 resource "azurerm_resource_group" "rg" {
   name     = "${var.resource_group}"
   location = "${var.location}"
@@ -163,10 +163,7 @@ resource "azurerm_virtual_machine_extension" "CSE-k8s" {
   settings = <<SETTINGS
     {
         "fileUris": [
-        "https://raw.githubusercontent.com/santi1s/k8s-lab/master/scripts/0_vm-setup.sh",
-        "https://raw.githubusercontent.com/santi1s/k8s-lab/master/scripts/kvm/1_kvm-setup.sh",
-        "https://raw.githubusercontent.com/santi1s/k8s-lab/master/scripts/docker/2_docker-setup.sh",
-        "https://raw.githubusercontent.com/santi1s/k8s-lab/master/scripts/docker/3_k8s-nodes-setup.sh"
+        "https://raw.githubusercontent.com/santi1s/k8s-lab/master/scripts/0_vm-setup.sh"
         ],
         "commandToExecute": "bash 0_vm-setup.sh"
     }
