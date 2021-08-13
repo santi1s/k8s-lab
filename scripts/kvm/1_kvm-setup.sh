@@ -75,7 +75,7 @@
 
 # create an ssh key for azureuser
 { # try
-    sudo -H -u azureuser bash -c 'ssh-keygen -N "" -f ~/.ssh/id_rsa'
+    sudo -H -u azureuser bash -c 'ssh-keygen -N "" -f ~/.ssh/id_rsa <<<y >/dev/null 2>&1'
 } || { # catch
     echo -e "Unexpected error creating ssh key for azure user"
     exit 1
